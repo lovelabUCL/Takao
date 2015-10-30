@@ -1,0 +1,585 @@
+% \documentclass[11pt,a4paper]{article}
+% \documentclass[man,floatsintext]{apa6}
+\documentclass[doc]{apa6}
+
+% \usepackage[margin=2.5cm]{geometry}
+
+\usepackage{graphicx}
+\usepackage{subfig}
+% \usepackage{subcaption}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+
+\usepackage[american]{babel}
+\usepackage[style=apa,sortcites=true,sorting=nyt,backend=biber]{biblatex}
+\DeclareLanguageMapping{american}{american-apa}
+\addbibresource{library.bib}
+
+
+\title{The hierarchical structure is optimal given human cognition.}
+
+\shorttitle{Structure Optimization}
+\author{Takao Noguchi, Brad Love}
+\affiliation{Department of Experimental Psychology, University College London}
+
+\abstract{%
+
+    Environments surrounding people are often hierarchically structured: a single object may fit
+    into a series of progressively more general categories (e.g., a terrier, dog, and animal). Given
+    the prevalence of this hierarchical structure, previous studies often assumed that knowledge
+    representation is also hierarchical, although empirical evidence does not provide a clear
+    support. In this contribution, we demonstrate that the hierarchical structure enables people to
+    make the most accurate inference and should be preferred, even when knowledge representation is
+    flat. This optimality is most pronounced when knowledge is represented with clusters of observed
+    objects.  Further, the cluster representation naturally leads to the effects of learning order,
+    which provides possible mechanisms behind previous empirical findings: the age of acquisition
+    effects and the basic level advantage.
+
+}
+
+\authornote{%
+
+    Word count: 2875.
+
+    Last updated: \today.
+
+}
+
+
+\begin{document}
+
+\maketitle
+
+Even informal observation of everyday categorization reveals that many objects fit into a number of
+categories. A single object might be called a terrier, dog, mammal or animal. This hierarchical
+structure of categories --- a sequence of progressively larger categories --- has been suggested as
+a universal property of category structure across cultures \parencite{Berlin1992a, Atran1998a}.
+Given the wide-spread adaptation of the hierarchical structure, it is tempting to assume that
+knowledge is hierarchically represented. This assumption of hierarchical representation, indeed,
+often underlies theoretical propositions \parencite[e.g.,][]{Tenenbaum2011a}. In this study,
+however, we demonstrate that the hierarchical structure is optimal even when knowledge
+representation is flat, without the depth represented in the hierarchical structure.
+
+
+\subsection*{Hierarchical structure of categories}
+
+\begin{figure}
+    \centering
+
+    \subfloat[Hierarchical structure, where dogs share the maximum number of feature values at both
+    levels, and categories at the lower level are nested within categories at the higher level.] {%
+
+        \includegraphics[]{tikz/example_hierarchy.pdf}
+    }
+
+    \subfloat[Non-hierarchical structure, where dogs share the maximum number of feature values at
+    each level, but categories at the lower level are orthogonal to categories at the higher level.]
+    {%
+
+        \includegraphics[]{tikz/example_nonhierarchy.pdf}
+    }
+
+    \vspace{10pt}
+
+    \caption{Example structures with dogs. A rectangle encloses dogs in a category, with a thicker
+    rectangle indicating a higher level category.}
+
+\label{fig:example}
+\end{figure}
+
+To begin, let us illustrate the hierarchical structure.  An example hierarchical structure is
+illustrated in Figure~\ref{fig:example}(a). Formally, the hierarchical structure satisfies the two
+characteristics: maximization of feature information and containment relation.  First, the
+hierarchical structure maximizes the information which objects, $X$, provide about a category
+$Y^{(i)}$:
+\begin{align}
+    I \left( Y^{(i)};\, X \right),
+\label{eqn:feature}
+\end{align}
+which is mutual information between category labels and objects. This feature information is
+maximized when all the objects in a category share values on the largest possible number of
+features.
+
+The hierarchical structure also satisfies the containment relation, which maximizes the following
+measure:
+\begin{align}
+    \sum_{i=1}^{k-1} \; I \left( Y^{(i)};\, Y^{(i + 1)} \right),
+\label{eqn:containment}
+\end{align}
+which is a sum of mutual information between multiple levels of categories. This containment measure
+is maximized when category labels form a partially ordered set: when all the objects in one category
+at the lower level fit into the same category at the higher level (see Figure~\ref{fig:example} for
+examples).
+
+Previous studies have demonstrated that people prefer the hierarchical structure.  When people are
+asked to categorize an object in any manner people prefer, for example, people are very likely to
+provide hierarchical structure of categories \parencite[e.g.,][]{Rosch1976a}.  Given the wide-spread
+preference for hierarchical structure of categories, it has been argued that knowledge is likely
+represented with hierarchy \parencite[e.g.,][]{Markman1984a, Markman1989a}.
+\textcite{Markman1989a}, for example, argues that people learn to hierarchically represent knowledge
+as they accumulate knowledge \parencite[see also][]{Vygotsky1962a, Inhelder1964a}.
+
+This assumption of hierarchical representation has been underlying theoretical propositions in
+cognitive science. For example, a mathematical model has been proposed to explain how people could
+learn to hierarchically represent knowledge \parencite{Kemp2008a}, and an inference drawn with this
+model correlates well with inference people make \parencite{Kemp2009a}.  The assumption of
+hierarchical representation also underlies theories in many other domains within cognitive science
+(e.g., inference \parencite{Osherson1990a}, memory \parencite{Bower1969a, Glass1975a}, reasoning
+\parencite{Collins1989a, Shastri1993a}, and word learning \parencite{Xu2007a}).
+
+The assumption of hierarchical representation, however, is not well supported with empirical
+evidence \parencite[see][for review]{Murphy1997a}. \textcite{Sloman1998a}, for example, report that
+when reasoning and making inferences with the hierarchical structure, people often neglect the
+containment relation, that all the objects in one category at the lower level fit into the same
+category at the higher level.
+
+Thus, it has been left unexplained why and how people prefer the hierarchical structure, when
+knowledge is not hierarchically represented. In this study, we aim to provide answer to this open
+question. In particular, we demonstrate that even when knowledge representation is flat --- when
+representation does not distinguish lower and higher levels --- the hierarchical structure is
+optimal given human cognition. Models of human cognition is discussed below.
+
+
+\subsection*{Models of human cognition}
+
+Cognitive models often assume that people represent knowledge as clusters of the observed objects
+\parencite[e.g.,][]{Anderson1991a, Love2004a, Sanborn2010a}. Every time a new object is observed,
+the new object is assigned to an existing cluster with similar objects (see Figure~\ref{fig:cluster}
+for an example). If none of the existing clusters contains sufficiently similar objects, a new
+    cluster is created to host the new object.  Then using the knowledge represented as clusters, an
+    inference is drawn from the observed objects in the cluster.  If a new object is assigned to a
+    cluster predominantly with terriers, for example, the new object is considered to be likely to
+    be a terrier.
+
+\begin{figure}
+    \centering
+
+    \includegraphics[]{tikz/example_cluster.pdf}
+    \vspace{6pt}
+
+    \caption{Example clusters. An ellipse encloses dogs in a cluster. A new observation is assigned
+    to a cluster which contains most similar dogs.}
+
+\label{fig:cluster}
+\end{figure}
+
+Formally, the probability that object $x$ is inferred as an instance of category $w$ at
+level $i$ is expressed as follows:
+\begin{align}
+    p(y^{(i)} = w\; \vert \; x) = \sum_{k \in \mathbb{Z}}
+    p(y^{(i)} = w \; \vert \; z = k)
+    \;
+    p(z = k \; \vert \; x).
+\end{align}
+Here, $\mathbb{Z}$ is a set of all the possible clusters. The probability of category label,
+$p(y^{(i)} = w \; \vert \; z = k)$, signifies drawing inference with clusters, and the probability
+of a cluster, $p(z = k \; \vert \; x)$, signifies knowledge representation. We first discuss how an
+inference can be improved with clusters, and then address how the improvement depends on knowledge
+representation.
+
+\subsubsection*{Inference}
+
+First, an inference can be more accurate when the probability of category label given a cluster is
+optimized. In particular, $p(y^{(i)} = w \; \vert \; z = k)$ approaches $1$, when all the objects in
+cluster $k$ fit into category $w$. Thus, an inference can be most accurate when the cluster
+structure follows the category structure.  Thus as objects which share values tend to be assigned to
+the same cluster, an inference is more accurate when objects in the same category share values on
+more features. When objects in the same category share values on the maximum number of dimensions,
+the structure maximizes the feature information (Equation~\ref{eqn:feature}).
+
+Also to allow an accurate inference across multiple levels of categories, objects in the same
+cluster have to fit into the same categories at both lower and higher levels.  With the cluster
+structure illustrated in Figure~\ref{fig:cluster}, for example, an accurate inference can be made
+for the small/large dog categories at the higher level, and the prick/drop ear categories at the
+    lower level (see Figure~\ref{fig:example}(a)). An inference, however, cannot be accurate when
+    the category structure at the higher level is orthogonal to the category structure at the lower
+    level: for example, when small/large dogs are distinguished at the higher level, but this
+    distinction are neglected at the lower level (see Figure~\ref{fig:example}(b)).  When all the
+    objects in a category at the lower level fit into a same category at the higher level category,
+    the category structure maximizes the containment measure (Equation~\ref{eqn:containment}).
+
+\subsubsection*{Cluster structure}
+
+Therefore, the hierarchical structure is expected to be optimal, such that a human learner is most
+likely to make an accurate inference across multiple levels of categories.  This optimality is,
+however, depends on how clusters are structured.
+
+\begin{figure}
+    \centering
+
+    \includegraphics[]{tikz/example_exemplar.pdf}
+    \vspace{6pt}
+
+    \caption{Exemplar representation, where each object is assigned to its own cluster.}
+
+\label{fig:exemplar}
+\end{figure}
+
+Previous research indicates that also psychologically plausible is the exemplar representation
+\parencite{Nosofsky1986a, Nosofsky1991a} (see Figure~\ref{fig:exemplar} for an illustration).  With
+the exemplar representation, each cluster contains a single object, and an inference is based on the
+most similar among the observed objects.  If an object is most similar to an observed object labeled
+as a terrier, for example, the object is inferred to be a terrier.  Thus, an inference is more
+accurate when similar objects fit into the same category: when the feature information is maximized.
+As the cluster structure cannot follow the category structure, however, the exemplar representation
+is insensitive to the containment relation: whether objects in a category at the lower level fit
+into the same category at the higher level.
+
+The simulation we report below examined whether the maximization of the feature information and the
+containment relation improves inference accuracy. The exemplar and cluster representations are
+simulated with the same model but with different parameter values.
+
+
+\section*{Simulation 1}
+
+% \subsection*{Machine teaching and structure optimization}
+%
+% Given a learning model $M$, machine teaching identifies the optimal training set $D_{train}$, such
+% that the learner trained on the set achieves the best performance on the testing set $D_{test}$ with
+% the minimum learning effort \parencite{Zhu2013a}.  Formally, the optimal training set is given by
+% \begin{align*}
+%     \argmin_{D_{train}}
+%         \left( \textrm{loss} \left( \widehat{M},\; D_{test} \right) +
+%                \textrm{effort} \left( D_{train} \right)
+%         \right),
+% \end{align*}
+% where $\widehat{M}$ denotes the learning model trained on $D_{train}$. Following previous studies
+% \parencite[e.g.,][]{Patil2014a}, we consider the learning effort to depend only on the size of
+% the training set and treat the learning effort as a constant.
+%
+% In the previous application of machine teaching in cognitive science \parencite{Patil2014a}, a
+% learning model $M$ is a cognitive model of categorization, and a learner infers a category label $y$
+% of an object, $x$. Letting $N$ denote the size of testing set and $\mathbb{Y}$ denote
+% a set of category labels, the loss function above can be formulated as the average cross-entropy
+% loss:
+% \begin{align}
+%     \textrm{loss} \left( \widehat{M},\; D_{test} \right)
+%     &= \frac{1}{N} \;
+%         \sum_{x, y \in D_{test}} \;
+%         H \left( p(y \,\vert\, x),\; q(y \,\vert\, x,\, \widehat{M}) \right) \notag\\
+%     &= - \frac{1}{N} \;
+%         \sum_{x, y \in D_{test}} \;
+%         \sum_{t \in \mathbb{Y}} \;
+%         p(y = t \,\vert\, x) \;
+%         \log \left( q \left( y = t \, \vert \, x,\, \widehat{M} \right) \right).
+% \label{eqn:loss}
+% \end{align}
+%
+% Here, $q \left( y \, \vert \, x,\, \widehat{M} \right)$ is the probability of category label, predicted
+% by the trained model. Minimization of the loss function through the model training is the focus of
+% machine teaching: the machine teaching minimizes the loss function by optimizing $q \left( y \, \vert \,
+% x,\, \widehat{M} \right)$. In this study, however, we minimize the loss function by optimizing a
+% category structure (i.e., $p(y \,\vert\, x)$). Thus, the structure optimization solves the
+% following:
+% \begin{align*}
+%     \argmin_{p(y \,\vert\, x)}
+%         \left( \textrm{loss} \left( \widehat{M},\; D_{test} \right) \right).
+% \end{align*}
+
+
+
+\subsection*{Methods}
+
+We have computed the feature information (Equation~\ref{eqn:feature}) and the containment measure
+(Equation~\ref{eqn:containment}) for all the possible category structures with eight objects.  We
+coded the three features of eight dogs in Figure~\ref{fig:example} into a binary and constrained the
+possible category structure, such that the degree of branching is two: the higher level has two
+categories with four dogs each, and the lower level contains four categories with two dogs each.
+Since the ordering of features is exchangeable, the number of possible category structure totals to
+3,675.
+
+For each category structure, the model is trained for 10 blocks. Each block involves 16 trials, the
+eight objects with a category label at either lower or higher level, in a random order.  In a trial
+with one level (e.g., the lower level), a category label at the other level (e.g., the higher level)
+is treated as missing.  After the training blocks, the average inference accuracy was calculated for
+each level of categories.  This accuracy was further mean-averaged across the $10^{4}$ simulations
+for each category structure (Please refer to Appendix~\ref{appendix:model} for more details of the
+    model and the simulation).
+
+
+\subsection*{Results and Discussion}
+
+\begin{figure}[t!]
+    \centering
+    \includegraphics[]{./figure/hierarchy_results.pdf}
+
+    \caption{The average inference accuracy for each category structure. The levels of categories
+    are shown in rows: the top panels illustrate the higher level, and the bottom panels illustrate
+    the lower level.  The two representations are shown in columns: the left panels illustrate the
+    cluster representation, and the right panels illustrate the exemplar representation.  Each panel
+    summarizes the accuracy for each combination of feature information and containment measure. A
+    dot represents mean, and error bar is 95\% empirical interval.  Each dot is jittered along the
+    horizontal axis for the illustration purposes.}
+
+\label{fig:result}
+\end{figure}
+
+For illustration purposes, we scaled the feature information, so that it ranges from 0 to 1 on each
+category level. The simulation results are summarized in Figure~\ref{fig:result}. As predicted for
+the cluster representation, the inference is more accurate with the feature information and the
+containment measure: The highest accuracy is achieved with the largest feature information and the
+largest containment measure.
+
+With the exemplar representation, however, the inference is only slightly more accurate with the
+feature information. This is because the identical objects are repeatedly presented in the
+simulation, and hence, an inference is often based on the identical object, as opposed to the most
+similar object among the observed ones. Thus, the similarity between objects tend to have little
+impact on inference.  Here, the highest accuracy is achieved with the largest feature information
+but the containment measure does not appear to have an impact.
+
+To confirm, we fitted linear regressions on the inference accuracy, which when appropriate, allow
+each level to have varying intercepts and slopes. The estimated slopes confirm the above
+observations: both feature information and containment measure increases the inference accuracy to a
+greater extent with the cluster representation than with the exemplar representation: the
+interaction effect is at $\beta=0.15$ (95\% CI [$0.15$, $0.16$]) for the feature information, and at
+$\beta=0.02$ (95\% CI [$0.02$, $0.03$]) for the containment measure. Further, the containment
+relation has a zero impact on the inference accuracy with the exemplar representation: $\beta=0.00$
+(95\% CI [$0.00$, $0.00$]).
+
+Thus as expected, the simulation results show that the hierarchical structure is optimal given human
+cognition. This optimality is, however, more pronounced with the cluster representation than with
+the exemplar representation. While the cluster representation shows improved inference accuracy with
+both feature information and containment relation, the exemplar representation shows improved
+inference accuracy only with feature information.
+
+
+\section*{Simulation 2}
+
+The above simulation results confirm that the hierarchical structure is optimal given the cluster
+representation. The cluster representation, however, also predicts effects of learning order on
+inference accuracy. The predicted effects were tested in Simulation 2.
+
+\begin{figure}
+    \centering
+
+    \subfloat[When categories at the higher level are learned first, the cluster structure mimics
+    the category structure at the higher level, allowing an accurate inference at the higher level.]
+    {%
+
+        \includegraphics[]{tikz/example_higher_first.pdf}
+    }
+
+    \subfloat[When categories at the lower level are learned first, the cluster structure mimics
+    the category structure at the lower level, allowing an accurate inference at the lower level.]
+    {%
+
+        \includegraphics[]{tikz/example_lower_first.pdf}
+    }
+
+    \vspace{10pt}
+
+    \caption{Illustrative cluster structures for each learning order. An ellipse encloses dogs in a
+    cluster.}
+
+\label{fig:learning_order}
+\end{figure}
+
+The predicted effects of learning order are illustrated in Figure~\ref{fig:learning_order}. As the
+cluster assignment of an object considers its category label as well as the object's features,
+objects from the same category tend to be perceived similar and fit into the same cluster. As a
+result, the cluster structure at first tends to follow the category structure learned at first.
+As subsequent learning at another category level builds upon this initial cluster structure, the
+cluster structure cannot as closely follow the category structure learned later. Consequently, an
+inference tends to be more accurate at the category level learned at first.
+
+With the exemplar representation, however, each object is assigned to its own cluster, regardless of
+learning order. Thus, we expect effects of learning order with the cluster representation but not
+with the exemplar representation.
+
+
+\subsection*{Methods}
+
+Simulation 2 employs the almost identical methods to Simulation 1, except that we only tested the
+hierarchical structures with two possible learning orders: lower-higher or higher-lower. Also, a
+training block in Simulation 2 presents the eight objects in a random order with a category label at
+either lower or higher level. Then, the learning order of lower-higher involves 10 training blocks
+with the lower level first, followed by 10 training blocks with the higher level categories. This
+order is reversed for the learning order of higher-lower.
+
+\subsection*{Results and Discussion}
+
+\begin{figure}[t!]
+    \centering
+    \includegraphics[]{./figure/learning_order_results.pdf}
+
+    \caption{The average inference accuracy for learning order.  The levels of categories are shown
+    in rows: the top panels illustrate the higher level, and the bottom panels illustrate the lower
+    level.  The two representations are shown in columns: the left panels illustrate the cluster
+    representation, and the right panels illustrate the exemplar representation.  A dot represents
+    mean, and error bar is 95\% empirical interval.}
+
+\label{fig:result2}
+\end{figure}
+
+Figure~\ref{fig:result2} illustrates the average inference accuracy for each learning order. This
+figure shows that with the cluster representation, an inference tends to be more accurate at the
+level learned at first.  The top left panel in Figure~\ref{fig:result2}, for example, shows that
+when the categories at the higher level are learned at first, an inference is more accurate at the
+higher level than when the same categories are learned later. With the exemplar representation, in
+contrast, the inference accuracy does not appear influenced by the learning order.
+
+To confirm, we fit mixed-effect linear regressions to the inference accuracy. The estimated slopes
+confirm the above observations: the learning order has a larger impact with the cluster
+representation than with the exemplar representation, as indicated by the interaction effect
+($\beta=0.08$, 95\% CI [$0.08$, $0.08$]). With the cluster representation, the learning order has
+different effect at each level ($\beta=0.08$, 95\% CI [$0.08$, $0.08$]). On the other hand with the
+exemplar representation, the learning order does not have an observable effect ($\beta=0.00$, 95\%
+CI [$0.00$, $0.00$]).
+
+These results confirm our predictions: with the cluster representation, learning is built upon the
+existing cluster representation. The cluster representation tends to follow the category structure
+learned at first.  This cluster structure carries over to the subsequent learning, and as a result,
+an inference tends to be more accurate at the level which is learned first.
+
+
+\section*{General Discussion}
+
+Previous studies within cognitive science have shown widespread preference for hierarchical
+structure \parencite[e.g.,][]{Rosch1976a}. This prevailing preference of hierarchical structure has
+led researchers to assume that knowledge is hierarchically represented
+\parencite[e.g.,][]{Markman1984a, Markman1989a}.  This assumption of hierarchical representation has
+underlay theories in many domains within cognitive science.
+
+Although we do not argue against the possibility that knowledge is hierarchically represented, our
+simulation results suggest that how people categorize objects may not necessarily correspond to how
+knowledge is psychologically represented. Our results indicate that the preference for the
+hierarchical structure is not necessarily due to the hierarchical representation. Even with the
+cluster representation, which does not distinguish higher and lower levels, the hierarchical
+structure is optimal and should be preferred. Thus, this study offers an alternative interpretation
+of the wide adaptation of hierarchical structure: the adaptation can be seen as evidence for the
+cluster representation over the exemplar representation.
+
+In addition, the results from Simulation 2 highlight a mechanism behind the age-of-acquisition
+effects \parencite{Gerhand1998a, Morrison1995a}: words that are acquired earlier in childhood are
+processed more accurately than words that are acquired later in life. Our results show that a
+category structure learned at first tends to shape the knowledge representation, allowing a more
+accurate inference.
+
+This initial representation underlies subsequent learning, which further explains the basic level
+advantage \parencite{Mervis1981a, Rosch1976a}, where an inference people make is generally more
+accurate at the basic level (e.g., dog) than at a more general (e.g., mammal) or more specific level
+(e.g., terrier). Our results provide the explanation that the basic level advantage may be a
+consequence of learning order. Indeed, previous research has demonstrated that categories at the
+basic level are learned earlier at the childhood than at other levels \parencite{Berlin1973a,
+Brown1958a, Horton1980a, Mervis1982a}.
+
+In addition, the simulation method we used complements machine teaching \parencite{Zhu2013a}. Machine
+teaching is a procedure to identify the optimal teaching objects, which enables learners to achieve
+the most accurate inference. In this machine teaching, the procedure is conditioned on the learning
+model and the category structure. In contrast, our simulation is conditioned on the learning model
+and identified the category structure which enables the learners to achieve the most accurate
+inference.
+
+Further, our simulation procedure has potential for practical applications: our simulation
+identifies the structure of objects which is best for human cognition. Thus for example, a retailer
+could use the same procedure to identify the best product categories to present to consumers. Such
+categories would best-fit consumers' cognition and may help consumers in finding the products which
+best suit their needs.
+
+
+\printbibliography{}
+
+\appendix
+
+\section{Details of Simulation with Rational Model of Cognition}
+\label{appendix:model}
+
+Suppose a learner has observed $n - 1$ objects $\left\{x_{1}, x_{2}, \dots, x_{n - 1}\right\}$ with
+corresponding category labels $\left\{y_{1}, y_{2}, \dots, y_{n - 1}\right\}$.  Each of these
+objects fits into a cluster. The cluster label for the $i$th object is denoted as $z_{i}$.
+
+\subsection{Drawing an inference}
+
+Then, the probability that the $n$th object fits into category $w$ is expressed as follows:
+\begin{align}
+    p(y_{n} = w \; \vert \; x_{n})
+    &= \sum_{k \in \mathbb{Z}} p(z_{n} = k \; \vert \; x_{n}) \; p(y_{n} = w \; \vert \; z_{n} = k) \notag\\
+    &= \sum_{k \in \mathbb{Z}} \; \frac{p(z_{n} = k) \; p(x_{n} \;\vert\; z_{n} = k)}{p(x_{n})} \; p(y_{n} = w \; \vert \; z_{n} =
+    k) \notag\\
+    &= \sum_{k \in \mathbb{Z}} \; \frac{p(z_{n} = k) \; p(x_{n} \;\vert\; z_{n} = k)}{\sum_{s \in
+    \mathbb{Z}} \; p(z_{n} = s) \; p(x_{n} \;\vert\; z_{n} = s)} \; p(y_{n} = w \; \vert \; z_{n} = k).
+\label{eqn:inference}
+\end{align}
+Here, $\mathbb{Z}$ is a set of all the possible clusters to which the $n$th object can be assigned.
+The three terms in Equation~\ref{eqn:inference} are described below in turn.
+
+First, the probability that the $n$th object fits into cluster $k$ is given by:
+\begin{align}
+    p(z_{n} = k) = \left\{
+        \begin{array}{rcl}
+            \displaystyle \frac{c\,m_{k}}{(1 - c) + c\,(n - 1)} & \mbox{if} & m_{k} > 0\\
+            \\
+            \displaystyle \frac{(1 - c)}{(1 - c) + c\,(n - 1)} & \mbox{if} & m_{k} = 0
+        \end{array}
+    \right.
+\label{eqn:prior}
+\end{align}
+where $c$ is a parameter called the coupling probability and $m_{k}$ is the number of objects
+assigned into cluster $k$.
+
+Following \textcite{Anderson1991a} and \textcite{Sanborn2010a}, we assume that an object has
+independent dimensions. Therefore,
+\begin{align}
+    p(x_{n} \; \vert \; z_{n} = k) = \prod_{d \in D} p(x_{n,d} \; \vert \; z_{n} = k),
+\label{eqn:feature1}
+\end{align}
+where $D$ is a set of dimensions in which an object is described.  The above term is computed with
+\begin{align}
+    p(x_{n,d} = v \; \vert \; z = k) = \frac{B_{v,d} + \beta_{c}}{m_{k} + J_{d} \, \beta_{c}},
+\label{eqn:feature2}
+\end{align}
+where $B_{v,d}$ is the number of objects in cluster $k$ with value of $v$ on dimension $d$, and
+$J_{d}$ is the number of values which an object can take on dimension $d$. Parameter $\beta_{c}$
+determines knowledge representation, as discussed below.
+
+Similarly, the probability that the $n$th object has category label $w$, given a cluster, is given by:
+\begin{align}
+    p(y_{n} = w \; \vert \; z = k) = \frac{B_{w} + \beta_{l}}{B_{.} + J \, \beta_{l}},
+\label{eqn:label}
+\end{align}
+where $B_{w}$ is the number of observed objects with category label $w$ in cluster $k$, $B_{.}$ is
+the number of object in cluster $k$, and $J$ is the number of category labels. Also, parameter
+$\beta_{l}$ determines knowledge representation, as discussed below.
+
+
+\subsection{Learning}
+
+The learning is equivalent to assigning an object into a cluster. The probability that an object is
+assigned to cluster $k$ is computed as
+\begin{align}
+    p(z_{n} = k \;\vert\; x_{n},\, y_{n}) \propto
+    p(z_{n} = k)
+    \;
+    p(x_{n} \;\vert\; z_{n} = k)
+    \;
+    p(y_{n} \;\vert\; z_{n} = k).
+\label{eqn:learning}
+\end{align}
+This is computed with Equations~\ref{eqn:prior},~\ref{eqn:feature1} and~\ref{eqn:label}.
+Additionally, this cluster assignment is conducted using the sequential Monte Carlo with one
+particle, which produces behavior much like human \parencite{Sanborn2010a}.
+
+
+\subsection{Knowledge representation}
+
+With the above specification, knowledge representation is determined by values for parameter
+$\beta$.  For the cluster representation, we used $\beta_{f}=1.0$ and $\beta_{l}=0.5$. These values
+are among the best fitting values to human performance \parencite{Sanborn2010a}.
+
+For the exemplar representation, we used small values of $\beta$ ($\beta_{f}=0.001$ and
+$\beta_{l}=0.001$) during the training, ensuring that a cluster can only contain identical objects.
+Inference based on such small $\beta$ is, however, often deterministic, and to allow more
+probabilistic inference, we used a larger value for $\beta$ ($\beta_{f}=1.0$ and $\beta_{l}=5.0$)
+during the testing.
+
+For both representations, the coupling probability $c$ is at $0.5$ during the training blocks and at
+$1.0$ during the testing blocks. These coupling probabilities prevent a new cluster from being
+created and ensure that an inference is not made with random guessing during the testing.
+
+% In machine learning literature, the rational model of categorization is often called Dirichlet
+% processes mixture model \parencite{Antoniak1974a, Ferguson1983a}.
+
+\end{document}
