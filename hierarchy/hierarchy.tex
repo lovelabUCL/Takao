@@ -27,16 +27,16 @@
 
 \abstract{%
 
-    Environments surrounding people are often hierarchically structured: a single object may fit
-    into a series of progressively more general categories (e.g., a terrier, dog, and animal). Given
-    the prevalence of this hierarchical structure, previous studies often assumed that knowledge
-    representation is also hierarchical, although empirical evidence does not provide a clear
-    support. In this contribution, we demonstrate that the hierarchical structure enables people to
-    make the most accurate inference and should be preferred, even when knowledge representation is
-    flat. This optimality is most pronounced when knowledge is represented with clusters of observed
-    objects.  Further, the cluster representation naturally leads to the effects of learning order,
-    which provides possible mechanisms behind previous empirical findings: the age of acquisition
-    effects and the basic level advantage.
+    Environments surrounding people are often hierarchically structured: a single object usually
+    fits into a series of progressively more general categories (e.g., a terrier, dog, and animal).
+    Given the prevalence of this hierarchical structure, previous studies often assumed that
+    knowledge representation is also hierarchical, although empirical evidence does not provide a
+    clear support. In this contribution, we demonstrate that the hierarchical structure enables
+    people to make the most accurate inference and should be preferred, even when knowledge
+    representation is flat. This optimality is most pronounced when knowledge is represented with
+    clusters of observed objects.  Further, the cluster representation naturally leads to the
+    effects of learning order, which explains mechanisms behind empirical findings: in particular,
+    the age of acquisition effects and the basic level advantage.
 
 }
 
@@ -70,22 +70,22 @@ representation is flat, without the depth represented in the hierarchical struct
     \centering
 
     \subfloat[Hierarchical structure, where dogs share the maximum number of feature values at both
-    levels, and categories at the lower level are nested within categories at the higher level.] {%
+    levels, and categories at the specific level are nested within categories at the general level.] {%
 
-        \includegraphics[]{tikz/example_hierarchy.pdf}
+        \includegraphics[]{figure/example_hierarchy.pdf}
     }
 
     \subfloat[Non-hierarchical structure, where dogs share the maximum number of feature values at
-    each level, but categories at the lower level are orthogonal to categories at the higher level.]
+    each level, but categories at the specific level are orthogonal to categories at the general level.]
     {%
 
-        \includegraphics[]{tikz/example_nonhierarchy.pdf}
+        \includegraphics[]{figure/example_nonhierarchy.pdf}
     }
 
     \vspace{10pt}
 
     \caption{Example structures with dogs. A rectangle encloses dogs in a category, with a thicker
-    rectangle indicating a higher level category.}
+    rectangle indicating a category at the general level.}
 
 \label{fig:example}
 \end{figure}
@@ -111,11 +111,11 @@ measure:
 \end{align}
 which is a sum of mutual information between multiple levels of categories. This containment measure
 is maximized when category labels form a partially ordered set: when all the objects in one category
-at the lower level fit into the same category at the higher level (see Figure~\ref{fig:example} for
+at the specific level fit into the same category at the general level (see Figure~\ref{fig:example} for
 examples).
 
 Previous studies have demonstrated that people prefer the hierarchical structure.  When people are
-asked to categorize an object in any manner people prefer, for example, people are very likely to
+asked to categorize objects in any manner people prefer, for example, people are very likely to
 provide hierarchical structure of categories \parencite[e.g.,][]{Rosch1976a}.  Given the wide-spread
 preference for hierarchical structure of categories, it has been argued that knowledge is likely
 represented with hierarchy \parencite[e.g.,][]{Markman1984a, Markman1989a}.
@@ -133,13 +133,13 @@ hierarchical representation also underlies theories in many other domains within
 The assumption of hierarchical representation, however, is not well supported with empirical
 evidence \parencite[see][for review]{Murphy1997a}. \textcite{Sloman1998a}, for example, report that
 when reasoning and making inferences with the hierarchical structure, people often neglect the
-containment relation, that all the objects in one category at the lower level fit into the same
-category at the higher level.
+containment relation, that all the objects in one category at the specific level fit into the same
+category at the general level.
 
 Thus, it has been left unexplained why and how people prefer the hierarchical structure, when
 knowledge is not hierarchically represented. In this study, we aim to provide answer to this open
 question. In particular, we demonstrate that even when knowledge representation is flat --- when
-representation does not distinguish lower and higher levels --- the hierarchical structure is
+representation does not distinguish general and specific levels --- the hierarchical structure is
 optimal given human cognition. Models of human cognition is discussed below.
 
 
@@ -157,7 +157,7 @@ for an example). If none of the existing clusters contains sufficiently similar 
 \begin{figure}
     \centering
 
-    \includegraphics[]{tikz/example_cluster.pdf}
+    \includegraphics[]{figure/example_cluster.pdf}
     \vspace{6pt}
 
     \caption{Example clusters. An ellipse encloses dogs in a cluster. A new observation is assigned
@@ -183,23 +183,24 @@ representation.
 \subsubsection*{Inference}
 
 First, an inference can be more accurate when the probability of category label given a cluster is
-optimized. In particular, $p(y^{(i)} = w \; \vert \; z = k)$ approaches $1$, when all the objects in
-cluster $k$ fit into category $w$. Thus, an inference can be most accurate when the cluster
-structure follows the category structure.  Thus as objects which share values tend to be assigned to
+optimized. In particular, $p(y^{(i)} = w \; \vert \; z = k)$ approaches $1$, with more objects in
+cluster $k$ fitting into category $w$. Thus, an inference can be most accurate when the cluster
+structure follows the category structure.  Since objects which share values tend to be assigned to
 the same cluster, an inference is more accurate when objects in the same category share values on
 more features. When objects in the same category share values on the maximum number of dimensions,
 the structure maximizes the feature information (Equation~\ref{eqn:feature}).
 
 Also to allow an accurate inference across multiple levels of categories, objects in the same
-cluster have to fit into the same categories at both lower and higher levels.  With the cluster
+cluster have to fit into the same categories at both general and specific levels.  With the cluster
 structure illustrated in Figure~\ref{fig:cluster}, for example, an accurate inference can be made
-for the small/large dog categories at the higher level, and the prick/drop ear categories at the
-    lower level (see Figure~\ref{fig:example}(a)). An inference, however, cannot be accurate when
-    the category structure at the higher level is orthogonal to the category structure at the lower
-    level: for example, when small/large dogs are distinguished at the higher level, but this
-    distinction are neglected at the lower level (see Figure~\ref{fig:example}(b)).  When all the
-    objects in a category at the lower level fit into a same category at the higher level category,
-    the category structure maximizes the containment measure (Equation~\ref{eqn:containment}).
+for the small/large dog categories at the general level, and the prick/drop ear categories at the
+    specific level (see Figure~\ref{fig:example}(a)). An inference, however, cannot be accurate when
+    the category structure at the general level is orthogonal to the category structure at the
+    specific level: for example, when small/large dogs are distinguished at the general level, but
+    this distinction are neglected at the specific level (see Figure~\ref{fig:example}(b)).  When
+    all the objects in a category at the specific level fit into a same category at the general
+    level category, the category structure maximizes the containment measure
+    (Equation~\ref{eqn:containment}).
 
 \subsubsection*{Cluster structure}
 
@@ -210,7 +211,7 @@ however, depends on how clusters are structured.
 \begin{figure}
     \centering
 
-    \includegraphics[]{tikz/example_exemplar.pdf}
+    \includegraphics[]{figure/example_exemplar.pdf}
     \vspace{6pt}
 
     \caption{Exemplar representation, where each object is assigned to its own cluster.}
@@ -225,8 +226,8 @@ most similar among the observed objects.  If an object is most similar to an obs
 as a terrier, for example, the object is inferred to be a terrier.  Thus, an inference is more
 accurate when similar objects fit into the same category: when the feature information is maximized.
 As the cluster structure cannot follow the category structure, however, the exemplar representation
-is insensitive to the containment relation: whether objects in a category at the lower level fit
-into the same category at the higher level.
+is insensitive to the containment relation: whether objects in a category at the specific level fit
+into the same category at the general level.
 
 The simulation we report below examined whether the maximization of the feature information and the
 containment relation improves inference accuracy. The exemplar and cluster representations are
@@ -285,15 +286,15 @@ simulated with the same model but with different parameter values.
 
 We have computed the feature information (Equation~\ref{eqn:feature}) and the containment measure
 (Equation~\ref{eqn:containment}) for all the possible category structures with eight objects.  We
-coded the three features of eight dogs in Figure~\ref{fig:example} into a binary and constrained the
-possible category structure, such that the degree of branching is two: the higher level has two
-categories with four dogs each, and the lower level contains four categories with two dogs each.
+coded the three features of eight dogs in Figure~\ref{fig:example} in binary and constrained the
+possible category structure, such that the degree of branching is two: the general level has two
+categories with four dogs each, and the specific level contains four categories with two dogs each.
 Since the ordering of features is exchangeable, the number of possible category structure totals to
 3,675.
 
 For each category structure, the model is trained for 10 blocks. Each block involves 16 trials, the
-eight objects with a category label at either lower or higher level, in a random order.  In a trial
-with one level (e.g., the lower level), a category label at the other level (e.g., the higher level)
+eight objects with a category label at either general or specific level, in a random order.  In a trial
+with one level (e.g., the general level), a category label at the other level (e.g., the specific level)
 is treated as missing.  After the training blocks, the average inference accuracy was calculated for
 each level of categories.  This accuracy was further mean-averaged across the $10^{4}$ simulations
 for each category structure (Please refer to Appendix~\ref{appendix:model} for more details of the
@@ -304,15 +305,23 @@ for each category structure (Please refer to Appendix~\ref{appendix:model} for m
 
 \begin{figure}[t!]
     \centering
-    \includegraphics[]{./figure/hierarchy_results.pdf}
+
+    \subfloat[Cluster representation. Inference accuracy increases with both feature information and
+    containment measure.]
+    {%
+        \includegraphics[]{./figure/hierarchy_accuracy_cluster.pdf}
+    }
+
+    \subfloat[Exemplar representation. Inference accuracy increases with feature information but not
+    with containment measure.]
+    {%
+        \includegraphics[]{./figure/hierarchy_accuracy_exemplar.pdf}
+    }
 
     \caption{The average inference accuracy for each category structure. The levels of categories
-    are shown in rows: the top panels illustrate the higher level, and the bottom panels illustrate
-    the lower level.  The two representations are shown in columns: the left panels illustrate the
-    cluster representation, and the right panels illustrate the exemplar representation.  Each panel
-    summarizes the accuracy for each combination of feature information and containment measure. A
-    dot represents mean, and error bar is 95\% empirical interval.  Each dot is jittered along the
-    horizontal axis for the illustration purposes.}
+    are shown in columns: the left panels illustrate the general level, and the bottom panels
+    illustrate the specific level.  A dot represents mean, and error bar is 95\% empirical interval.
+    Each dot is jittered along the horizontal axis for the illustration purposes.}
 
 \label{fig:result}
 \end{figure}
@@ -355,18 +364,18 @@ inference accuracy. The predicted effects were tested in Simulation 2.
 \begin{figure}
     \centering
 
-    \subfloat[When categories at the higher level are learned first, the cluster structure mimics
-    the category structure at the higher level, allowing an accurate inference at the higher level.]
+    \subfloat[When categories at the general level are learned first, the cluster structure mimics
+    the category structure at the general level, allowing an accurate inference at the general level.]
     {%
 
-        \includegraphics[]{tikz/example_higher_first.pdf}
+        \includegraphics[]{figure/example_higher_first.pdf}
     }
 
-    \subfloat[When categories at the lower level are learned first, the cluster structure mimics
-    the category structure at the lower level, allowing an accurate inference at the lower level.]
+    \subfloat[When categories at the specific level are learned first, the cluster structure mimics
+    the category structure at the specific level, allowing an accurate inference at the specific level.]
     {%
 
-        \includegraphics[]{tikz/example_lower_first.pdf}
+        \includegraphics[]{figure/example_lower_first.pdf}
     }
 
     \vspace{10pt}
@@ -382,7 +391,7 @@ cluster assignment of an object considers its category label as well as the obje
 objects from the same category tend to be perceived similar and fit into the same cluster. As a
 result, the cluster structure at first tends to follow the category structure learned at first.
 As subsequent learning at another category level builds upon this initial cluster structure, the
-cluster structure cannot as closely follow the category structure learned later. Consequently, an
+cluster structure cannot follow as closely the category structure learned later. Consequently, an
 inference tends to be more accurate at the category level learned at first.
 
 With the exemplar representation, however, each object is assigned to its own cluster, regardless of
@@ -393,23 +402,35 @@ with the exemplar representation.
 \subsection*{Methods}
 
 Simulation 2 employs the almost identical methods to Simulation 1, except that we only tested the
-hierarchical structures with two possible learning orders: lower-higher or higher-lower. Also, a
+hierarchical structures with two possible learning orders: general-first or specific-first. Also, a
 training block in Simulation 2 presents the eight objects in a random order with a category label at
-either lower or higher level. Then, the learning order of lower-higher involves 10 training blocks
-with the lower level first, followed by 10 training blocks with the higher level categories. This
-order is reversed for the learning order of higher-lower.
+either general or specific level. Then, the learning order of general-first involves 10 training
+blocks with the general level first, followed by 10 training blocks with the specific level. This
+order is reversed for the learning order of specific-first.
 
 \subsection*{Results and Discussion}
 
 \begin{figure}[t!]
     \centering
-    \includegraphics[]{./figure/learning_order_results.pdf}
 
-    \caption{The average inference accuracy for learning order.  The levels of categories are shown
-    in rows: the top panels illustrate the higher level, and the bottom panels illustrate the lower
-    level.  The two representations are shown in columns: the left panels illustrate the cluster
-    representation, and the right panels illustrate the exemplar representation.  A dot represents
-    mean, and error bar is 95\% empirical interval.}
+    \subfloat[Cluster representation. An inference tends to be more accurate at the level learned at
+    first.]
+    {%
+        \includegraphics[]{./figure/order_accuracy_cluster.pdf}
+    }
+
+    \subfloat[Exemplar representation. An inference tends to be more accurate when the specific
+    level is learned at first, but the effect appears to be minor. The difference is less than
+    $.01$ at both levels.]
+    {%
+        \includegraphics[]{./figure/order_accuracy_exemplar.pdf}
+    }
+
+    \vspace{10pt}
+
+    \caption{The average inference accuracy for each learning order.  The levels of categories are
+    shown in columns: the left panels illustrate the general level, and the right panels illustrate
+    the specific level.   A dot represents mean, and error bar is 95\% empirical interval.}
 
 \label{fig:result2}
 \end{figure}
@@ -417,16 +438,17 @@ order is reversed for the learning order of higher-lower.
 Figure~\ref{fig:result2} illustrates the average inference accuracy for each learning order. This
 figure shows that with the cluster representation, an inference tends to be more accurate at the
 level learned at first.  The top left panel in Figure~\ref{fig:result2}, for example, shows that
-when the categories at the higher level are learned at first, an inference is more accurate at the
-higher level than when the same categories are learned later. With the exemplar representation, in
-contrast, the inference accuracy does not appear influenced by the learning order.
+when the categories at the general level are learned at first, an inference is more accurate at the
+general level than when the same categories are learned later. With the exemplar representation, in
+contrast, the inference accuracy does not appear much influenced by the learning order: the
+difference in accuracy is less than $0.005$.
 
 To confirm, we fit mixed-effect linear regressions to the inference accuracy. The estimated slopes
 confirm the above observations: the learning order has a larger impact with the cluster
 representation than with the exemplar representation, as indicated by the interaction effect
 ($\beta=0.08$, 95\% CI [$0.08$, $0.08$]). With the cluster representation, the learning order has
 different effect at each level ($\beta=0.08$, 95\% CI [$0.08$, $0.08$]). On the other hand with the
-exemplar representation, the learning order does not have an observable effect ($\beta=0.00$, 95\%
+exemplar representation, the learning order does not have a tangible effect ($\beta=0.00$, 95\%
 CI [$0.00$, $0.00$]).
 
 These results confirm our predictions: with the cluster representation, learning is built upon the
@@ -447,7 +469,7 @@ Although we do not argue against the possibility that knowledge is hierarchicall
 simulation results suggest that how people categorize objects may not necessarily correspond to how
 knowledge is psychologically represented. Our results indicate that the preference for the
 hierarchical structure is not necessarily due to the hierarchical representation. Even with the
-cluster representation, which does not distinguish higher and lower levels, the hierarchical
+cluster representation, which does not distinguish general and specific levels, the hierarchical
 structure is optimal and should be preferred. Thus, this study offers an alternative interpretation
 of the wide adaptation of hierarchical structure: the adaptation can be seen as evidence for the
 cluster representation over the exemplar representation.
