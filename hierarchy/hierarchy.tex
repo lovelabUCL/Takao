@@ -20,6 +20,7 @@
 
 
 \title{The hierarchical structure is optimal given human cognition.}
+% good title, but can revisit later***
 
 \shorttitle{Structure Optimization}
 \author{Takao Noguchi, Brad Love}
@@ -31,18 +32,21 @@
     fits into a series of progressively more general categories (e.g., a terrier, dog, and animal).
     Given the prevalence of this hierarchical structure, previous studies often assumed that
     knowledge representation is also hierarchical, although empirical evidence does not provide a
-    clear support. In this contribution, we demonstrate that the hierarchical structure enables
-    people to make the most accurate inference and should be preferred, even when knowledge
-    representation is flat. This optimality is most pronounced when knowledge is represented with
-    clusters of observed objects.  Further, the cluster representation naturally leads to the
-    effects of learning order, which explains mechanisms behind empirical findings: in particular,
-    the age of acquisition effects and the basic level advantage.
+    clear support. In this contribution, we demonstrate that neither the environment nor conceptual
+    representations need to be hierarchically structured for people to prefer the hierarchical
+    structure: the hierarchical structure enables people to make the most accurate inference and
+    should be preferred, even when knowledge representation is flat. This optimality is most
+    pronounced when knowledge is represented with clusters of observed objects.  Further, the
+    cluster representation naturally leads to the effects of learning order, which explains
+    mechanisms behind empirical findings: in particular, the age of acquisition effects and the
+    basic level advantage.
 
 }
 
+
 \authornote{%
 
-    Word count: 2875.
+    Word count: 3010.
 
     Last updated: \today.
 
@@ -63,6 +67,7 @@ often underlies theoretical propositions \parencite[e.g.,][]{Tenenbaum2011a}. In
 however, we demonstrate that the hierarchical structure is optimal even when knowledge
 representation is flat, without the depth represented in the hierarchical structure.
 
+% *** again, i think there is an idea out there that world might be hierarchical. there might be a nice parallel to work in prototype theory. rosch shows people prefer prototypes, so we assume prototype model of concepts, then comes along exemplar models. Likewise, Rosch and others say hierarchy, so people assume some hierarchal organisation, but again that's not necessary.
 
 \subsection*{Hierarchical structure of categories}
 
@@ -91,7 +96,7 @@ representation is flat, without the depth represented in the hierarchical struct
 \end{figure}
 
 To begin, let us illustrate the hierarchical structure.  An example hierarchical structure is
-illustrated in Figure~\ref{fig:example}(a). Formally, the hierarchical structure satisfies the two
+illustrated in Figure~\ref{fig:example} (a).  Formally, the hierarchical structure satisfies the two
 characteristics: maximization of feature information and containment relation.  First, the
 hierarchical structure maximizes the information which objects, $X$, provide about a category
 $Y^{(i)}$:
@@ -136,23 +141,35 @@ when reasoning and making inferences with the hierarchical structure, people oft
 containment relation, that all the objects in one category at the specific level fit into the same
 category at the general level.
 
-Thus, it has been left unexplained why and how people prefer the hierarchical structure, when
-knowledge is not hierarchically represented. In this study, we aim to provide answer to this open
-question. In particular, we demonstrate that even when knowledge representation is flat --- when
-representation does not distinguish general and specific levels --- the hierarchical structure is
-optimal given human cognition. Models of human cognition is discussed below.
+In this study, we step back and consider the possibility that preference for hierarchy is not an
+indication of hierarchal representation.  In particular, we explore models of category learning that
+do not assume the hierarchal structure and to foreshadow, we find these non-hierarchical models
+prefer the hierarchical structure too, searching through the space of all possible structures.
+Thus, we conclude that much of the previous decades of research on knowledge representation do not
+bear on whether knowledge is hierarchically represented.  Instead, our results suggest continuity
+between lower level tasks used in lab where knowledge is not hierarchical with higher-level theory
+about the nature of complex semantic representations.
+
+%****we
+%probably should also mention the semantic verification time literature that shows faster to say a
+%chicken is an animal rather than bird as evidence that the field has been grappling with these
+%issues for decades, but still ascribes to the logic that performance for or against (in this case
+%against) hierarchy is evidence for its existence in mind. we blow up that logic. the point is that
+%people are arguing both sides of issues with measures that might not tell us much.
 
 
 \subsection*{Models of human cognition}
 
-Cognitive models often assume that people represent knowledge as clusters of the observed objects
-\parencite[e.g.,][]{Anderson1991a, Love2004a, Sanborn2010a}. Every time a new object is observed,
-the new object is assigned to an existing cluster with similar objects (see Figure~\ref{fig:cluster}
-for an example). If none of the existing clusters contains sufficiently similar objects, a new
-    cluster is created to host the new object.  Then using the knowledge represented as clusters, an
-    inference is drawn from the observed objects in the cluster.  If a new object is assigned to a
-    cluster predominantly with terriers, for example, the new object is considered to be likely to
-    be a terrier.
+Unlike models of knowledge representation discussed above, many cognitive models of category
+learning do not assume the hierarchical structure. Here, we discuss two of the dominant approaches:
+clustering and exemplar models. Clustering models assume that people represent knowledge as clusters
+of the observed objects \parencite[e.g.,][]{Anderson1991a, Love2004a, Sanborn2010a}. Every time a
+new object is observed, the new object is assigned to an existing cluster with similar objects (see
+Figure~\ref{fig:cluster} for an example). If none of the existing clusters contains sufficiently
+similar objects, a new cluster is created to host the new object.  Then using the knowledge
+represented as clusters, an inference is drawn from the observed objects in the cluster.  If a new
+object is assigned to a cluster predominantly with terriers, for example, the new object is
+considered to be likely to be a terrier.
 
 \begin{figure}
     \centering
@@ -166,8 +183,8 @@ for an example). If none of the existing clusters contains sufficiently similar 
 \label{fig:cluster}
 \end{figure}
 
-Formally, the probability that object $x$ is inferred as an instance of category $w$ at
-level $i$ is expressed as follows:
+Formally, the probability that Object $x$ is inferred as an instance of Category $w$ at Level $i$ is
+expressed as follows:
 \begin{align}
     p(y^{(i)} = w\; \vert \; x) = \sum_{k \in \mathbb{Z}}
     p(y^{(i)} = w \; \vert \; z = k)
@@ -175,17 +192,20 @@ level $i$ is expressed as follows:
     p(z = k \; \vert \; x).
 \end{align}
 Here, $\mathbb{Z}$ is a set of all the possible clusters. The probability of category label,
-$p(y^{(i)} = w \; \vert \; z = k)$, signifies drawing inference with clusters, and the probability
-of a cluster, $p(z = k \; \vert \; x)$, signifies knowledge representation. We first discuss how an
-inference can be improved with clusters, and then address how the improvement depends on knowledge
-representation.
+$p(y^{(i)} = w \; \vert \; z = k)$, signifies drawing inference with clusters: this probability is
+higher when more object in Cluster $k$ fit into Category $w$. Also, the probability of a cluster,
+$p(z = k \; \vert \; x)$, signifies knowledge representation: this probability is higher when
+objects in Cluster $k$ is more similar to Object $x$. We first discuss how an inference can be
+improved with clusters, and then address how the improvement depends on knowledge representation.
 
 \subsubsection*{Inference}
 
+%****for here and above, best to anchor in some real-world examples.. it only takes a sentence or two to keep the reader onboard and not get them lost in abstractions (e.g., paragraph below). reviewers are lame too, as we know. your figure does it later, but i would have some real-world one too, like one real-world category for which it's easy to draw infernces and one for which it is difficult.
+
 First, an inference can be more accurate when the probability of category label given a cluster is
 optimized. In particular, $p(y^{(i)} = w \; \vert \; z = k)$ approaches $1$, with more objects in
-cluster $k$ fitting into category $w$. Thus, an inference can be most accurate when the cluster
-structure follows the category structure.  Since objects which share values tend to be assigned to
+Cluster $k$ fitting into Category $w$. Thus, an inference can be most accurate when the cluster
+structure mirrors the category structure. Since objects which share values tend to be assigned to
 the same cluster, an inference is more accurate when objects in the same category share values on
 more features. When objects in the same category share values on the maximum number of dimensions,
 the structure maximizes the feature information (Equation~\ref{eqn:feature}).
@@ -194,13 +214,12 @@ Also to allow an accurate inference across multiple levels of categories, object
 cluster have to fit into the same categories at both general and specific levels.  With the cluster
 structure illustrated in Figure~\ref{fig:cluster}, for example, an accurate inference can be made
 for the small/large dog categories at the general level, and the prick/drop ear categories at the
-    specific level (see Figure~\ref{fig:example}(a)). An inference, however, cannot be accurate when
-    the category structure at the general level is orthogonal to the category structure at the
-    specific level: for example, when small/large dogs are distinguished at the general level, but
-    this distinction are neglected at the specific level (see Figure~\ref{fig:example}(b)).  When
-    all the objects in a category at the specific level fit into a same category at the general
-    level category, the category structure maximizes the containment measure
-    (Equation~\ref{eqn:containment}).
+specific level (see Figure~\ref{fig:example} (a)). An inference, however, cannot be accurate when the
+category structure at the general level is orthogonal to the category structure at the specific
+level: for example, when small/large dogs are distinguished at the general level, but this
+distinction are neglected at the specific level (see Figure~\ref{fig:example} (b)).  When all the
+objects in a category at the specific level fit into a same category at the general level category,
+the category structure maximizes the containment measure (Equation~\ref{eqn:containment}).
 
 \subsubsection*{Cluster structure}
 
@@ -221,66 +240,35 @@ however, depends on how clusters are structured.
 
 Previous research indicates that also psychologically plausible is the exemplar representation
 \parencite{Nosofsky1986a, Nosofsky1991a} (see Figure~\ref{fig:exemplar} for an illustration).  With
-the exemplar representation, each cluster contains a single object, and an inference is based on the
-most similar among the observed objects.  If an object is most similar to an observed object labeled
-as a terrier, for example, the object is inferred to be a terrier.  Thus, an inference is more
-accurate when similar objects fit into the same category: when the feature information is maximized.
-As the cluster structure cannot follow the category structure, however, the exemplar representation
-is insensitive to the containment relation: whether objects in a category at the specific level fit
-into the same category at the general level.
+the exemplar representation, each cluster contains a single object, and an inference is based on one
+of the most similar among the observed objects.  If an object is most similar to an observed object
+labeled as a terrier, for example, the object is most likely inferred to be a terrier.  Thus, an
+inference is more accurate when similar objects fit into the same category: when the feature
+information is maximized.  As the cluster structure cannot follow the category structure, however,
+the exemplar representation is insensitive to the containment relation: whether objects in a
+category at the specific level fit into the same category at the general level\footnote{We assume
+that people do not infer a category label at another level than being asked: when making an
+inference on the general category, people do not infer the specific category \parencite[see
+however,][]{Nosofsky2015a}.}.
 
 The simulation we report below examined whether the maximization of the feature information and the
 containment relation improves inference accuracy. The exemplar and cluster representations are
 simulated with the same model but with different parameter values.
 
 
+\subsection*{Machine teaching}
+
+In the simulation, we adapt machine teaching procedure. Machine teaching identifies the optimal
+training set, such that the learner trained on the set achieves the best performance on the testing
+set \parencite{Zhu2013a, Patil2014a}.  Thus in the machine teaching, the procedure is conditioned on
+the learning model and the category structure.  Here in contrast, we search through possible
+structures to identify the optimal structure, such that the learner achieves the best performance.
+Thus, our simulation is conditioned on the training set and the learning model.
+
+
 \section*{Simulation 1}
 
-% \subsection*{Machine teaching and structure optimization}
-%
-% Given a learning model $M$, machine teaching identifies the optimal training set $D_{train}$, such
-% that the learner trained on the set achieves the best performance on the testing set $D_{test}$ with
-% the minimum learning effort \parencite{Zhu2013a}.  Formally, the optimal training set is given by
-% \begin{align*}
-%     \argmin_{D_{train}}
-%         \left( \textrm{loss} \left( \widehat{M},\; D_{test} \right) +
-%                \textrm{effort} \left( D_{train} \right)
-%         \right),
-% \end{align*}
-% where $\widehat{M}$ denotes the learning model trained on $D_{train}$. Following previous studies
-% \parencite[e.g.,][]{Patil2014a}, we consider the learning effort to depend only on the size of
-% the training set and treat the learning effort as a constant.
-%
-% In the previous application of machine teaching in cognitive science \parencite{Patil2014a}, a
-% learning model $M$ is a cognitive model of categorization, and a learner infers a category label $y$
-% of an object, $x$. Letting $N$ denote the size of testing set and $\mathbb{Y}$ denote
-% a set of category labels, the loss function above can be formulated as the average cross-entropy
-% loss:
-% \begin{align}
-%     \textrm{loss} \left( \widehat{M},\; D_{test} \right)
-%     &= \frac{1}{N} \;
-%         \sum_{x, y \in D_{test}} \;
-%         H \left( p(y \,\vert\, x),\; q(y \,\vert\, x,\, \widehat{M}) \right) \notag\\
-%     &= - \frac{1}{N} \;
-%         \sum_{x, y \in D_{test}} \;
-%         \sum_{t \in \mathbb{Y}} \;
-%         p(y = t \,\vert\, x) \;
-%         \log \left( q \left( y = t \, \vert \, x,\, \widehat{M} \right) \right).
-% \label{eqn:loss}
-% \end{align}
-%
-% Here, $q \left( y \, \vert \, x,\, \widehat{M} \right)$ is the probability of category label, predicted
-% by the trained model. Minimization of the loss function through the model training is the focus of
-% machine teaching: the machine teaching minimizes the loss function by optimizing $q \left( y \, \vert \,
-% x,\, \widehat{M} \right)$. In this study, however, we minimize the loss function by optimizing a
-% category structure (i.e., $p(y \,\vert\, x)$). Thus, the structure optimization solves the
-% following:
-% \begin{align*}
-%     \argmin_{p(y \,\vert\, x)}
-%         \left( \textrm{loss} \left( \widehat{M},\; D_{test} \right) \right).
-% \end{align*}
-
-
+%*** for the results figure, figure 4, the key thing seems to be that containment helps for clustering model, but not exemplar model. That doesn't jump out from figure because the big visual effect is the rising performance with feature information. Would reversing the focus of figure help? E.g., make the horizontal axis be the containment. In that case, exemplar figure would be self-similar/flat overall across, whereas cluster would rise overall from left to right.
 
 \subsection*{Methods}
 
@@ -319,7 +307,7 @@ for each category structure (Please refer to Appendix~\ref{appendix:model} for m
     }
 
     \caption{The average inference accuracy for each category structure. The levels of categories
-    are shown in columns: the left panels illustrate the general level, and the bottom panels
+    are shown in columns: the left panels illustrate the general level, and the right panels
     illustrate the specific level.  A dot represents mean, and error bar is 95\% empirical interval.
     Each dot is jittered along the horizontal axis for the illustration purposes.}
 
@@ -356,6 +344,8 @@ inference accuracy only with feature information.
 
 
 \section*{Simulation 2}
+
+%*** we should discuss figure 6 as well.
 
 The above simulation results confirm that the hierarchical structure is optimal given the cluster
 representation. The cluster representation, however, also predicts effects of learning order on
@@ -402,7 +392,7 @@ with the exemplar representation.
 \subsection*{Methods}
 
 Simulation 2 employs the almost identical methods to Simulation 1, except that we only tested the
-hierarchical structures with two possible learning orders: general-first or specific-first. Also, a
+hierarchical structures with two possible learning orders: general-first and specific-first. Also, a
 training block in Simulation 2 presents the eight objects in a random order with a category label at
 either general or specific level. Then, the learning order of general-first involves 10 training
 blocks with the general level first, followed by 10 training blocks with the specific level. This
@@ -488,18 +478,11 @@ consequence of learning order. Indeed, previous research has demonstrated that c
 basic level are learned earlier at the childhood than at other levels \parencite{Berlin1973a,
 Brown1958a, Horton1980a, Mervis1982a}.
 
-In addition, the simulation method we used complements machine teaching \parencite{Zhu2013a}. Machine
-teaching is a procedure to identify the optimal teaching objects, which enables learners to achieve
-the most accurate inference. In this machine teaching, the procedure is conditioned on the learning
-model and the category structure. In contrast, our simulation is conditioned on the learning model
-and identified the category structure which enables the learners to achieve the most accurate
-inference.
-
-Further, our simulation procedure has potential for practical applications: our simulation
-identifies the structure of objects which is best for human cognition. Thus for example, a retailer
-could use the same procedure to identify the best product categories to present to consumers. Such
-categories would best-fit consumers' cognition and may help consumers in finding the products which
-best suit their needs.
+In addition, the simulation method we used complements machine teaching \parencite{Zhu2013a}. Our
+simulation identifies the structure of objects which is best for human cognition. Thus for example,
+a retailer could use the same procedure to identify the best product categories to present to
+consumers. Such categories would best-fit consumers' cognition and may help consumers in finding the
+products which best suit their needs.
 
 
 \printbibliography{}
