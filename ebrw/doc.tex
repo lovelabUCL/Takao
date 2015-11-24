@@ -1,6 +1,7 @@
 \documentclass[doc]{apa6}
 
 \usepackage{graphicx}
+\usepackage{xcolor}
 \usepackage{kbordermatrix}
 
 \usepackage{amsmath}
@@ -16,7 +17,7 @@
 
 
 \title{Notes on EBRW Extension}
-\shorttitle{Math Derivation}
+\shorttitle{EBRW extension}
 
 \author{Takao Noguchi}
 \affiliation{Department of Experimental Psychology, University College London}
@@ -440,7 +441,9 @@ appropriate absorbing states:
 
 \subsubsubsection{Response time.} As the fundamental matrix ($M_{d}$) is the expected number of times each exemplar is retrieved, we first multiply each element in $M_{d}$ with the expected retrieval time for each exemplar:
 \begin{align}
-    \mathcal{E}(t_{.(z, j)}) = \left( \alpha + \frac{1}{a_{ij}} \right) \; m_{.(z, j)}.
+    \mathcal{E}(t_{.(z, j)}) = \left( \alpha + \frac{1}
+                                                    {\sum_{j \in \mathbb{A}} a_{ij} + \sum_{j \in \mathbb{B}} a_{ij}}
+                               \right) \; m_{.(z, j)}.
 \end{align}
 Then the expected response time is given by summing the relevant elements:
 \begin{align}
@@ -628,8 +631,8 @@ exemplar. Thus, the number of transient state is $(n + n') \, (\theta_{B} + \the
 the number of absorbing states is $n + n'$.  The probability of transitioning from state $(0, k)$ to
 state $(+1, j)$ by retrieving Exemplar $j$ in Category $\mathbb{A}$ is now
 \begin{align}
-    p_{(0,k)(+1,j)} = \frac{\psi \, a_{kj} + (1 - \psi) \, a_{ij}}
-                           {\psi \, \sum_{j} a_{kj} + (1 - \psi) \, \sum_{j} a_{ij}.}
+    p_{(0,k)(+1,j)} = \psi \frac{a_{kj}}{\sum_{j} a_{kj}}  +
+                      (1 - \psi) \frac{a_{ij}}{\sum_{j} a_{ij}.}
 \end{align}
 We also divide the transition matrix $P$ into four sub-matrices just as we did for the EBRWd. The
 rest of derivation is the same as that for the EBRWd.
@@ -642,31 +645,171 @@ $k$ is last retrieved, to state $(+1,j)$ by retrieving Exemplar $j$ from Categor
 \begin{align}
     p_{(0,k)(+1,j)} = \psi \; a_{jk} + (1 - \psi) \; a_{ik}.
 \end{align}
+{\color{red} [I'm not sure if this is correct.]}
 The rest of derivation is the same as that for the EBRWc.
 
 
 \section{Model Parameters}
 
-\subsection{GCM}
-\indent --- $\rho$: similarity kernel parameter\\
-\indent --- $\gamma$: similarity gradient\\
-\indent --- $\eta$: memory strength\\
-\indent --- $\theta_{A}$ and $\theta_{B}$: response boundary
+\begin{figure}
+    \centering
+    \includegraphics[]{../simulate_models/figure/parameter_prior.pdf}
 
-\subsection{EBRW}
-\indent --- $\rho$: similarity kernel parameter\\
-\indent --- $\gamma$: similarity gradient\\
-\indent --- $\eta$: memory strength\\
-\indent --- $\theta_{A}$ and $\theta_{B}$: response boundary\\
-\indent --- $\alpha$: time to accumulate evidence after retrieving an exemplar (only for EBRWd)
+    \caption{Prior density/mass function.}
 
-\subsection{SSM}
-\indent --- $\rho$: similarity kernel parameter\\
-\indent --- $\gamma$: similarity gradient\\
-\indent --- $\eta$: memory strength\\
-\indent --- $\theta_{A}$ and $\theta_{B}$: response boundary\\
-\indent --- $\alpha$: time to accumulate evidence after retrieving an exemplar (only for SSMd)\\
-\indent --- $\psi$: the probability of using the last retrieved exemplar as a cue.
+\label{fig:parameter_prior}
+\end{figure}
+
+I arbitrarily defined prior distributions for the model parameters. Prior density is illustrated in
+Figure~\ref{fig:parameter_prior}. The following simulations were conditioned on this prior
+distribution.
+
+\smallskip
+\noindent \emph{EBRWd, EBRWc, SSMd, and SSMc}\\
+\indent Attention weight for item-exemplar similarity (two dimension): $\omega_{item} \sim Dir(50, 50)$\\
+\indent Similarity kernel parameter: $\rho \sim Gamma(13,\, 0.1)$\\
+\indent Similarity gradient: $\gamma \sim Gamma(15,\, 0.2)$\\
+\indent Memory strength: $\eta = 1$\\
+\indent Response boundary: $\theta - 1 \sim Poisson(3)$
+
+\smallskip
+\noindent \emph{EBRWd and SSMd}\\
+\indent Time to accumulate evidence after retrieving an exemplar: $\alpha \sim Expon(1)$
+
+\smallskip
+\noindent \emph{SSMd and SSMc}\\
+\indent Attention weight for exemplar-exemplar similarity (two dimension):\\
+\indent \indent $\omega_{exemplar} \sim Dir(5, 5, 90)$\\
+\indent Probability of using the last retrieved exemplar as a cue: $\psi \sim Beta(19,\, 3)$
+
+
+\section{Simulation}
+
+\subsection{Symmetric categories}
+
+In this section, I compare the models to examine (1) whether the discrete time formulation differs
+from the continuous time formulation, and (2) how the SSM differs from the EBRW\@. In each simulation,
+I first randomly drew 10 exemplars for each category from Gaussian distribution:
+\begin{align}
+    \mathbb{A}: x_{j} &\sim \mathcal{N}\left(
+        \left[ \begin{array}{c} -1\\-1 \end{array} \right], \;
+        \left[ \begin{array}{c c} 1&0\\0&1 \end{array} \right]
+        \right) \quad j = 1, 2, \dots, 5 \quad \mbox{and}\\
+    \mathbb{B}: x_{j'} &\sim\mathcal{N}\left(%
+        \left[ \begin{array}{c} 1\\1 \end{array} \right], \;
+        \left[ \begin{array}{c c} 1&0\\0&1 \end{array} \right]
+        \right) \quad j = 1, 2, \dots, 5.
+\end{align}
+Then, model predictions on $[0, 0]$ were compared with 200 parameters drawn from the prior. Ten
+sets of exemplars were tested.
+
+\begin{figure}[h!]
+    \includegraphics[]{../simulate_models/figure/sym_pA.pdf}
+
+    \caption{Response probability for the symmetric categories. Dot is a median prediction, and
+    error bar is 95\% highest density interval.}
+
+\label{fig:sym_pA}
+\end{figure}
+
+Figure~\ref{fig:sym_pA} summarizes predicted response probability for Category $\mathbb{A}$. This
+figure illustrates that predictions with the discrete time formulation does not differ much from
+predictions with the continuous time formulation: EBRWd's predictions are quite similar to EBRWc's
+predictions, and SSMd's predictions are quite similar to SSMc's prediction. Also, the prediction
+with SSM tends to be closer to $.50$, compared to the predictions with EBRW\@.
+
+
+\subsection{Asymmetric categories}
+
+\begin{figure}
+    \centering
+    \includegraphics[]{../simulate_models/figure/asym_category.pdf}
+
+    \caption{Distributions of two category exemplars. The category distributions are $Gamma(1, 1)$
+    for Category $\mathbb{A}$ and $\mathcal{N}(4, 0.1)$ for Category $\mathbb{B}$. Vertical lines
+    represent mean of distribution, and $x$ indicates a value of the probe item.}
+
+\label{fig:asym_category}
+\end{figure}
+
+Further I examined models with asymmetric category structures. Here, an exemplar is characterized by
+only one feature (as opposed to two features above). As above, 10 exemplars were drawn from Category
+$\mathbb{A}$ distribution and another 10 were drawn from Category $\mathbb{B}$ distribution.
+Figure~\ref{fig:asym_category} illustrates the category distributions. Importantly, the probe item
+is closer to the mean of Category $\mathbb{B}$ distribution, but most similar exemplar tends to come
+from Category $\mathbb{A}$.  The parameter values are drawn from the same distributions as above,
+and each set of exemplars was tested with 200 sets of parameter values.
+
+\begin{figure}[h!]
+    \includegraphics[]{../simulate_models/figure/asym_pA.pdf}
+
+    \caption{Response probability for the symmetric categories. Dot is a median prediction, and
+    error bar is 95\% highest density interval.}
+
+\label{fig:asym_pA}
+\end{figure}
+
+Figure~\ref{fig:asym_pA} summarizes predicted response probability for Category $\mathbb{A}$. This
+figure illustrates that predictions with the discrete time formulation does not differ much from
+predictions with the continuous time formulation. Also, the prediction with SSM tends to be closer
+to $.50$, compared to the predictions with EBRW\@. All the models, however, predict Category
+$\mathbb{B}$ response, implying that the EBRWd and EBRWc are difficult to behaviorally differentiate
+from the SSMd and SSMc.
+
+
+\subsection{Asymmetric categories 2}
+
+Thus far, the simulations have shown that the models make similar predictions. This similarity may
+be due to the category distributions, not due to the models themselves. In this section, I manually
+specified a set of exemplars to exaggerate differences between the models.  Specifically, the
+exemplars are:
+\begin{align}
+    \mathbb{A}&: \{-1.0, -0.9, -0.8, -0.7, -0.6, -0.5, -0.4, -0.3, -0.2, -0.1\}\\
+    \mathbb{B}&: \{0.40, 0.41, 0.42, 0.43, 0.44, 0.45, 0.46, 0.47, 0.48, 0.49\}.
+\end{align}
+The probe item was $[0.0]$. Importantly, the probe item is most similar to an exemplar from Category
+$\mathbb{A}$ but is closer to the mean of Category $\mathbb{B}$ ($0.445$) than to the mean of Category
+$\mathbb{A}$ ($-0.55$). Thus, I expected the EBRW to predict Category $\mathbb{B}$ response and the
+SSM to predict Category $\mathbb{A}$ response.
+
+\begin{figure}[h!]
+    \includegraphics[]{../simulate_models/figure/asym2_pA.pdf}
+
+    \caption{Response probability for the symmetric categories 2. Dot is a median prediction, and
+    error bar is 95\% highest density interval.}
+
+\label{fig:asym2_pA}
+\end{figure}
+
+The simulation results, however, show that all the models are rather indifferent between the two
+categories (see Figure~\ref{fig:asym2_pA}), and again the predictions are too similar to
+differentiate.
+
+
+\subsection{5--4 problem}
+
+For the 5--4 problem \parencite{Medin1978a}, I revised the prior for attention weight ($\omega$) to
+reflect the optimal attention weight \parencite{Lamberts1995a}: for item-exemplar similarity,
+\begin{align}
+    \omega_{item} \sim Dir(33, 3, 33, 31),
+\end{align}
+and for exemplar-exemplar similarity (for SSM),
+\begin{align}
+    \omega_{exemplar} \sim Dir(3.3, 0.3, 3.3, 3.1, 90).
+\end{align}
+
+\begin{figure}[h!]
+    \includegraphics[]{../simulate_models/figure/five_four_pA.pdf}
+
+    \caption{Response probability for the symmetric categories 2. Dot is a median prediction for
+    each transfer item, and error bar is 95\% highest density interval.}
+
+\label{fig:five_four_pA}
+\end{figure}
+
+The simulation results show the same pattern as above: compared to the EBRW's predictions, the SSM
+predicts response probability closer to $.50$ (see Figure~\ref{fig:five_four_pA}). Again, the models
+do not make competing predictions.
 
 
 
