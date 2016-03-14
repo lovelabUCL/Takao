@@ -1,11 +1,11 @@
-Hierarchical Structure of Categories
+Hierarchical structure of categories
 ====================================
 
-Current Status
+Current status
 --------------
 Awaiting Brad's comments.
 
 
-Planned Publication Venue
+Planned publication venue
 -------------------------
 Psychological Review as a theoretical note.
