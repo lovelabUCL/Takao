@@ -89,7 +89,7 @@ First, I looked at the proportions of correct judgements for each participant
 for each response-time condition. Their means along with the 95% confidence
 intervals are summarised below.
 
-[Figure 1](./figure/figure1.png)
+![Figure 1](./figure/figure1.png)
 
 Then I fit mixed-effect logistic regressions to predict accuracy of judgements.
 These regression models allow the effect of response-time and baseline accuracy
@@ -98,7 +98,7 @@ indicates a long judgement is significantly more likely to be accurate than a
 majority vote of three short judgements: χ²(1)=10.36, p=.001. Estimates from
 the mixed-effect regressions are summarised below.
 
-[Figure 2](./figure/figure2.png)
+![Figure 2](./figure/figure2.png)
 
 Overall, the results show the opposite pattern to the hypothesis: a long
 judgement is more accurate than a majority vote of short judgements.
